@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Firebase2</string>
+    <string name="email">Email</string>
+    <string name="restablecer_clave">Restablecer clave</string>
+    <string name="se_ha_enviado_un_correo_de_confirmaci_n">Se ha enviado un correo de confirmación</string>
+    <string name="recupere_su_contrase_a">RECUPERE SU CONTRASEÑA</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
+    <string name="configuraci_n">Configuración</string>
+    <string name="escanear_qr">Escanear QR</string>
+    <string name="consultar_registros">Consultar Registros</string>
+    <string name="bienvenido_al_sistema">Bienvenido al sistema</string>
+    <string name="todo">TODO</string>
+    <string name="configurar_perfil">Configurar perfil</string>
+    <string name="documento">Documento</string>
+    <string name="nombre_y_apellido">Nombre y Apellido</string>
+    <string name="celular">Celular</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="confirmar_contrase_a">Confirmar contraseña</string>
+    <string name="registrarse">Registrarse</string>
+</resources>
