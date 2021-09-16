@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,24 +28,18 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    Button btnSignOut, btnScanQr, btnConfig;
+    LinearLayout btnSignOut, btnScanQr, btnPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         btnSignOut = findViewById(R.id.btnSignOut);
         btnScanQr = findViewById(R.id.btnScanQr);
-        btnConfig = findViewById(R.id.btnGoLogin);
-
-        btnScanQr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                escanearQr();
-            }
-        });
+        btnPerfil = findViewById(R.id.btnPerfil);
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +51,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        if(currentUser != null) {
-            Toast.makeText(getApplicationContext(), currentUser.getUid(), Toast.LENGTH_SHORT).show();
-        }
+        btnScanQr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                escanearQr();
+            }
+        });
     }
 
     private void guardarRegistro(String URL, String codigo) {
