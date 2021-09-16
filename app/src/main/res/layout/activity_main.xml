@@ -48,7 +48,7 @@
                 android:padding="12dp">
 
                 <EditText
-                    android:id="@+id/emailTxtEdit"
+                    android:id="@+id/txtDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/border_top"
@@ -142,7 +142,7 @@
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/btnConfig"
+                        android:id="@+id/btnGoLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"

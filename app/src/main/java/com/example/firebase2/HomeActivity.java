@@ -1,6 +1,5 @@
 package com.example.firebase2;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -38,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         btnSignOut = findViewById(R.id.btnSignOut);
         btnScanQr = findViewById(R.id.btnScanQr);
-        btnConfig = findViewById(R.id.btnConfig);
+        btnConfig = findViewById(R.id.btnGoLogin);
 
         btnScanQr.setOnClickListener(new View.OnClickListener() {
             @Override
