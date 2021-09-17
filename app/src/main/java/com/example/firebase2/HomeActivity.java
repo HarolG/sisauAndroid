@@ -28,7 +28,7 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    LinearLayout btnSignOut, btnScanQr, btnPerfil;
+    LinearLayout btnSignOut, btnScanQr, btnPerfil, btnConsultarReportes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,16 @@ public class HomeActivity extends AppCompatActivity {
         btnSignOut = findViewById(R.id.btnSignOut);
         btnScanQr = findViewById(R.id.btnScanQr);
         btnPerfil = findViewById(R.id.btnPerfil);
+        btnConsultarReportes = findViewById(R.id.btnConsultarReportes);
+
+        btnConsultarReportes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), reportesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnSignOut.setOnClickListener(new View.OnClickListener() {
             @Override
