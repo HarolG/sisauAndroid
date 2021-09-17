@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle("Autorización");
         buttonLogin = findViewById(R.id.btnSignOut);
-        buttonSignUp = findViewById(R.id.btnGoLogin);
-        emailTxtEdit = findViewById(R.id.txtDoc);
+        buttonSignUp = findViewById(R.id.btnConfig);
+        emailTxtEdit = findViewById(R.id.emailTxtEdit);
         passTxtEdit = findViewById(R.id.passTxtEdit);
         txtForgetPass = findViewById(R.id.txtForgetPass);
         mAuth = FirebaseAuth.getInstance();

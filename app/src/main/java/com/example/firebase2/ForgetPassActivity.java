@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ForgetPassActivity extends AppCompatActivity {
 
-    Button btnRestorePass, btnGoLogin;
+    Button btnRestorePass;
     TextView edtTxtEmail, textCardAlert;
     CardView cardAlert;
     String email;
@@ -33,8 +32,9 @@ public class ForgetPassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_forget_pass);
 
         btnRestorePass = findViewById(R.id.btnRestorePass);
-        btnGoLogin = findViewById(R.id.btnGoLogin);
         edtTxtEmail = findViewById(R.id.edtTxtEmail);
+        textCardAlert = findViewById(R.id.textCardAlert);
+        cardAlert = findViewById(R.id.cardAlert);
         mAuth = FirebaseAuth.getInstance();
 
         btnRestorePass.setOnClickListener(new View.OnClickListener() {
@@ -49,15 +49,6 @@ public class ForgetPassActivity extends AppCompatActivity {
             }
         });
 
-        btnGoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     protected void restablecerClave() {
@@ -65,22 +56,13 @@ public class ForgetPassActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Revise su correo electrónico", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    /*
                     textCardAlert.setText("Se ha enviado un correo de restablecimiento");
                     textCardAlert.setBackgroundColor(Color.GREEN);
                     textCardAlert.setTextColor(Color.BLACK);
-                     */
                 } else {
-                    Toast.makeText(getApplicationContext(), "Ha ocurrido un error, verifique el correo", Toast.LENGTH_SHORT).show();
-                    /*
                     textCardAlert.setText("Ha ocurrido un error, verifique el correo");
                     textCardAlert.setBackgroundColor(Color.RED);
                     textCardAlert.setTextColor(Color.WHITE);
-                     */
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
