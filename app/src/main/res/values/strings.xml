@@ -19,4 +19,6 @@
     <string name="registrarse">Registrarse</string>
     <string name="apellido">Apellido</string>
     <string name="nombre">Nombre</string>
+    <string name="recupere_su_clave">Recupere su clave</string>
+    <string name="o">O</string>
 </resources>

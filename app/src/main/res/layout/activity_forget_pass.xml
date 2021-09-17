@@ -1,67 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ForgetPassActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="7"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView3"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:text="Recupere su clave"
-            android:textSize="20sp" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edtTxtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/banner" />
+        </FrameLayout>
+    </LinearLayout>
 
-        <Button
-            android:id="@+id/btnRestorePass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp"
-            android:background="#039BE5"
-            android:text="@string/restablecer_clave"
-            android:textColor="#212121" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardAlert"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:background="#43A047"
-            android:visibility="invisible">
+            android:orientation="vertical"
+            android:padding="12dp">
 
             <TextView
-                android:id="@+id/textCardAlert"
+                android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#43A047"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="#212121"
+                android:text="Recibirás un correo electrónico con las indicaciones para restablecer su contraseña"
                 android:textSize="16sp" />
-        </androidx.cardview.widget.CardView>
+
+            <EditText
+                android:id="@+id/edtTxtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border"
+                android:ems="10"
+                android:hint="Correo Electronico"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:padding="15dp" />
+
+            <Button
+                android:id="@+id/btnRestorePass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/boton"
+                android:backgroundTint="@color/colorPrimario"
+                android:text="@string/restablecer_clave"
+                android:textColor="@color/colorBlancoConOpacidad" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_gravity="center"
+                            android:background="@color/colorBlancoConOpacidad"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="#303030"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:text="@string/o" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnGoLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/boton"
+                    android:backgroundTint="@color/colorPrimarioConOpacidad10"
+                    android:text="Iniciar Sesión"
+                    android:textColor="@color/colorPrimario"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

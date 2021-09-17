@@ -39,7 +39,7 @@ import java.util.regex.Pattern;
 public class RegistrarseActivity extends AppCompatActivity {
 
     private TextView txtDoc, txtNombre, txtApellido, txtCelular, txtEmail, txtPass, txtConPass;
-    Button btnRegister;
+    Button btnRegister, btnGoLogin;
     private String documento, nombre, apellido, celular, email, pass, conPass;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -64,7 +64,17 @@ public class RegistrarseActivity extends AppCompatActivity {
         txtPass = findViewById(R.id.txtPass);
         txtConPass = findViewById(R.id.txtConPass);
         btnRegister = findViewById(R.id.btnRegister);
+        btnGoLogin = findViewById(R.id.btnGoLogin);
         mAuth = FirebaseAuth.getInstance();
+
+        btnGoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
