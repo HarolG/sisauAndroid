@@ -19,13 +19,23 @@
         <entry key="..\:/Users/Harol/AndroidStudioProjects/Firebase2/app/src/main/res/layout/activity_perfil.xml" value="0.18" />
         <entry key="..\:/Users/Harol/AndroidStudioProjects/Firebase2/app/src/main/res/layout/activity_registrarse.xml" value="0.25" />
         <entry key="..\:/Users/Harol/AndroidStudioProjects/Firebase2/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/harol.guzman/StudioProjects/sisauAndroid/app/src/main/res/layout/activity_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/harol.guzman/StudioProjects/sisauAndroid/app/src/main/res/layout/activity_reportes.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/harol.guzman/StudioProjects/sisauAndroid/app/src/main/res/layout/activity_splash.xml" value="0.28306159420289856" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.36666666666666664" />
+      </ProjectState>
+    </option>
   </component>
 </project>
