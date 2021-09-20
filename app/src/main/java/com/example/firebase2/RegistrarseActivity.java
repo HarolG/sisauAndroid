@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -188,11 +189,30 @@ public class RegistrarseActivity extends AppCompatActivity {
         boolean resultadoVal = Pattern.matches(regex, campo);
 
         if(resultadoVal) {
-            campoLayout.setBackgroundColor(Color.TRANSPARENT);
+            Drawable drawable;
+            if(campo.equals("documento")) {
+                drawable = getResources().getDrawable(R.drawable.border_top);
+                campoLayout.setBackground(drawable);
+            } else if(campo.equals("conPass")) {
+                drawable = getResources().getDrawable(R.drawable.border_bottom);
+                campoLayout.setBackground(drawable);
+            } else {
+                drawable = getResources().getDrawable(R.drawable.border_box);
+                campoLayout.setBackground(drawable);
+            }
         } else {
-            campoLayout.setBackgroundColor(Color.argb(10, 255, 3, 3));
+            Drawable drawable;
+            if(campo.equals("documento")) {
+                drawable = getResources().getDrawable(R.drawable.border_top_error);
+                campoLayout.setBackground(drawable);
+            } else if(campo.equals("conPass")) {
+                drawable = getResources().getDrawable(R.drawable.border_bottom_error);
+                campoLayout.setBackground(drawable);
+            } else {
+                drawable = getResources().getDrawable(R.drawable.border_box_error);
+                campoLayout.setBackground(drawable);
+            }
         }
-
         return Pattern.matches(regex, campo);
     }
 

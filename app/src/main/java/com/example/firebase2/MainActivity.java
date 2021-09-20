@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(getApplicationContext(), "El email aún no ha sido verificado, revise su bandeja de entrad", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "El email aún no ha sido verificado, revise su bandeja de entrada", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al iniciar sesión", Toast.LENGTH_SHORT).show();
@@ -93,31 +93,4 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-
-    private  void registrarse() {
-        email = emailTxtEdit.getText().toString();
-        clave = passTxtEdit.getText().toString();
-
-        if(!email.isEmpty() && !clave.isEmpty()) {
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, clave).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Se ha enviado un correo de confirmación", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                }
-            });
-        }
-    }
-
 }

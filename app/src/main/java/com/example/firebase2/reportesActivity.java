@@ -17,7 +17,7 @@ public class reportesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reportes);
 
-        tableLayout = findViewById(R.id.tableReportes);
+        //tableLayout = findViewById(R.id.tableReportes);
         tableDynamic = new TableDynamic(tableLayout, getApplicationContext());
         encabezado = new String[]{"Documento", "Nombre"};
 
