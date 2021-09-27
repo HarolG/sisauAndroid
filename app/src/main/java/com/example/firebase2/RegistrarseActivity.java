@@ -1,18 +1,14 @@
 package com.example.firebase2;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,15 +19,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
-import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,17 +31,16 @@ import java.util.regex.Pattern;
 public class RegistrarseActivity extends AppCompatActivity {
 
     private TextView txtDoc, txtNombre, txtApellido, txtCelular, txtEmail, txtPass, txtConPass;
-    Button btnRegister, btnGoLogin;
     private String documento, nombre, apellido, celular, email, pass, conPass;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private DatabaseReference mDatabase;
+    //private DatabaseReference mDatabase;
 
     String regexNom = "[a-zA-Z]{1,99}";
     String regexDoc = "\\d{6,10}";
     String regexCelular = "\\d{8,10}";
-    String regexEmail = "[\\w._%+-]+@uniminuto+.edu";
-    String regexClave = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$";
+    String regexEmail = "[\\w0-9._%+-]+@+uniminuto+.+edu";
+    String regexClave = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +54,8 @@ public class RegistrarseActivity extends AppCompatActivity {
         txtEmail = findViewById(R.id.txtEmail);
         txtPass = findViewById(R.id.txtPass);
         txtConPass = findViewById(R.id.txtConPass);
-        btnRegister = findViewById(R.id.btnRegister);
-        btnGoLogin = findViewById(R.id.btnGoLogin);
+        Button btnRegister = findViewById(R.id.btnRegister);
+        Button btnGoLogin = findViewById(R.id.btnGoLogin);
         mAuth = FirebaseAuth.getInstance();
 
         btnGoLogin.setOnClickListener(new View.OnClickListener() {
@@ -88,18 +78,18 @@ public class RegistrarseActivity extends AppCompatActivity {
                 pass = txtPass.getText().toString();
                 conPass = txtConPass.getText().toString();
 
-                boolean bDocumento = validarCampos(regexCelular, documento, txtDoc);
-                boolean bNombre = validarCampos(regexNom, nombre, txtNombre);
-                boolean bApellido = validarCampos(regexNom, apellido, txtApellido);
-                boolean bCelular = validarCampos(regexCelular, celular, txtCelular);
-                boolean bEmail = validarCampos(regexEmail, celular, txtEmail);
-                boolean bPass = validarCampos(regexClave, pass, txtPass);
-                boolean bConPass = validarCampos(regexClave, conPass, txtConPass);
+                boolean bDocumento = validarCampos(regexDoc, documento, txtDoc, "top");
+                boolean bNombre = validarCampos(regexNom, nombre, txtNombre, "box");
+                boolean bApellido = validarCampos(regexNom, apellido, txtApellido, "box");
+                boolean bCelular = validarCampos(regexCelular, celular, txtCelular, "box");
+                boolean bEmail = validarCampos(regexEmail, celular, txtEmail, "box");
+                boolean bPass = validarCampos(regexClave, pass, txtPass, "box");
+                boolean bConPass = validarCampos(regexClave, conPass, txtConPass, "bottom");
 
 
-                if(bDocumento && bNombre && bApellido && bCelular /*&& bEmail*/ && bPass && bConPass) {
+                if(bDocumento && bNombre && bApellido && bCelular && bEmail && bPass && bConPass) {
                     if(pass.equals(conPass)) {
-                        registrarse();
+                        //registrarse();
                     } else {
                         Toast.makeText(getApplicationContext(), "Las contraseñas no coiciden", Toast.LENGTH_SHORT).show();
                     }
@@ -133,7 +123,7 @@ public class RegistrarseActivity extends AppCompatActivity {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()) {
-                                            registrarUsuarioBd("https://www.sisau.online/api/user/add.php");
+                                            registrarUsuarioBd();
                                             Toast.makeText(getApplicationContext(), "Se ha enviado un correo de confirmación", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                             mAuth.signOut();
@@ -155,8 +145,8 @@ public class RegistrarseActivity extends AppCompatActivity {
         });
     }
 
-    protected void registrarUsuarioBd(String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+    protected void registrarUsuarioBd() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://www.sisau.online/api/user/add.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -185,40 +175,34 @@ public class RegistrarseActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private boolean validarCampos(String regex, String campo, TextView campoLayout) {
+    private boolean validarCampos(String regex, String campo, TextView campoLayout, String identificador) {
         boolean resultadoVal = Pattern.matches(regex, campo);
 
         if(resultadoVal) {
-            Drawable drawable;
-            if(campo.equals("documento")) {
-                drawable = getResources().getDrawable(R.drawable.border_top);
-                campoLayout.setBackground(drawable);
-            } else if(campo.equals("conPass")) {
-                drawable = getResources().getDrawable(R.drawable.border_bottom);
-                campoLayout.setBackground(drawable);
+            if(identificador.equals("top")) {
+                campoLayout.setBackgroundResource(R.drawable.border_top);
+            } else if(identificador.equals("bottom")) {
+                campoLayout.setBackgroundResource(R.drawable.border_bottom);
             } else {
-                drawable = getResources().getDrawable(R.drawable.border_box);
-                campoLayout.setBackground(drawable);
+                campoLayout.setBackgroundResource(R.drawable.border_box);
             }
         } else {
-            Drawable drawable;
-            if(campo.equals("documento")) {
-                drawable = getResources().getDrawable(R.drawable.border_top_error);
-                campoLayout.setBackground(drawable);
-            } else if(campo.equals("conPass")) {
-                drawable = getResources().getDrawable(R.drawable.border_bottom_error);
-                campoLayout.setBackground(drawable);
+            if(identificador.equals("top")) {
+                campoLayout.setBackgroundResource(R.drawable.border_top_error);
+            } else if(identificador.equals("bottom")) {
+                campoLayout.setBackgroundResource(R.drawable.border_bottom_error);
             } else {
-                drawable = getResources().getDrawable(R.drawable.border_box_error);
-                campoLayout.setBackground(drawable);
+                campoLayout.setBackgroundResource(R.drawable.border_box_error);
             }
         }
         return Pattern.matches(regex, campo);
     }
 
+    /*
     private void writeNewUser() {
         User newUser = new User(documento, nombre, celular, email);
-        mDatabase.child("users").child(user.getUid()).setValue(newUser);
+        //mDatabase.child("users").child(user.getUid()).setValue(newUser);
     }
+     */
 
 }

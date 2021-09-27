@@ -21,4 +21,14 @@
     <string name="nombre">Nombre</string>
     <string name="recupere_su_clave">Recupere su clave</string>
     <string name="o">O</string>
+    <string name="activo">Activo</string>
+    <string name="anteriores">Anteriores</string>
+    <string name="rea_sisau01_chical_ibagu_tolima_27_09_2021">Área: SISAU01 - Chicalá Ibagué, Tolima 27/09/2021</string>
+    <string name="actividad">ACTIVIDAD</string>
+    <string name="mi">MI</string>
+    <string name="rea_sisau02_chical_ibagu_tolima_27_09_2021">Área: SISAU02 - Chicalá Ibagué, Tolima 27/09/2021</string>
+    <string name="seleccione_el_rango">Seleccione el rango</string>
+    <string name="hoy">Hoy</string>
+    <string name="mes">Mes</string>
+    <string name="sin_ninguna_actividad_reciente">Sin ninguna actividad reciente</string>
 </resources>
