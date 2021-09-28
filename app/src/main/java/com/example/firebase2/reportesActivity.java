@@ -13,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,7 @@ public class reportesActivity extends AppCompatActivity {
     private TableLayout tableLayout;
     private TableDynamic tableDynamic;
     private String[] encabezado;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +33,15 @@ public class reportesActivity extends AppCompatActivity {
         //tableLayout = findViewById(R.id.tableReportes);
         tableDynamic = new TableDynamic(tableLayout, getApplicationContext());
         encabezado = new String[]{"Documento", "Nombre"};
-
-        try {
-            tableLayout.removeAllViews();
-            tableDynamic.addHeader(encabezado);
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
+        mAuth = FirebaseAuth.getInstance();
+        consultarActividadActual();
     }
 
     private void consultarActividadActual () {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://sisau.online/api/user/getActivityActual.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -55,13 +52,7 @@ public class reportesActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                /*
-                parametros.put("documento", documento);
-                parametros.put("nombre", nombre);
-                parametros.put("apellido", apellido);
-                parametros.put("celular", celular);
-                parametros.put("email", email);
-                 */
+                parametros.put("uid_usuario", mAuth.getUid());
                 return parametros;
             }
         };
